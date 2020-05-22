@@ -1,1 +1,3 @@
-# This folder holds all documentation and correspondence generated during this project.
+# Documentation Folder
+
+This folder holds the documentation and correspondence generated for this project.
