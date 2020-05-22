@@ -2,7 +2,7 @@
 
 ## Capstone project for Team 3, SWEN 670 (Summer), UMGC
 
-![A collaboration between the SFD and the UMGC](img/README00.png "A collaboration between the SFD and the UMGC")
+![A collaboration between the SFD and the UMGC](Images/README00.png "A collaboration between the SFD and the UMGC")
 
 >***DISCLAIMER:***
 >
