@@ -56,6 +56,7 @@ Team 3 is:
 
 - Mohammed Allibalogun
 - Charles Baisie
+- Jamal Bourne
 - Meron Debela
 - Robert Garcia
 - Augustin Mwamba
