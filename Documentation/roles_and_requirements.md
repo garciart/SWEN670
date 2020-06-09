@@ -66,3 +66,36 @@ Updated 2020-06-04
 - As a registered, authenticated, and authorized System Administrator, I want to view a system error log, so I can inform the development team of problems or issues with the application.
 - As a registered, authenticated, and authorized System Administrator, I want to view a system activity log, so I can audit access and use of the system.
 - As a registered, authenticated, and authorized System Administrator, I want to a user guide, so I provide users with instructions on how to use the system.
+
+### Non-Functional Requirements:
+
+- As a system, I want to limit Create-Read-Update-Delete (CRUD) access to authenticated and authorized users only, so I may preserve the confidentiality and integrity of Personally Identifiable Information (PII).
+- As a system, I want new registrants to verify their accounts via a link sent via email (2FA), so I may mitigate the creation of fake accounts.
+- As a system, I want all non-verified accounts to be deleted within 24 hours, so I may prevent database bloating.
+- As a system, I want all user input validated, so I may prevent injection and scripting attacks.
+- As a system, I want user sessions to timeout within 30 minutes, so I may prevent inadvertent disclosure of PII.
+- As a system, I want to limit multi-account access to authorized devices only (MAC Whitelisting), so I may preserve the confidentiality and integrity of PII, as well as the availability of the system.
+- As a system, I want the following NIST SP 800-53 controls enforced throughout the application, so I may preserve the confidentiality and integrity of PII, as well as the availability of the system:
+  - AC-2: ACCOUNT MANAGEMENT
+  - AC-3: ACCESS ENFORCEMENT
+  - AC-7: UNSUCCESSFUL LOGON ATTEMPTS
+  - AC-8: SYSTEM USE NOTIFICATION
+  - AC-11: SESSION LOCK
+  - AC-12: SESSION TERMINATION
+  - AU-2: AUDIT EVENTS
+  - AU-8: TIME STAMPS
+  - IA-2: IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)
+  - SC-13: CRYPTOGRAPHIC PROTECTION
+  - SC-23: SESSION AUTHENTICITY
+  - SI-10: INFORMATION INPUT VALIDATION
+  - SI-11: ERROR HANDLING
+- As a system, I want all SQL queries to use prepared statements, so I can prevent SQL injection attacks.
+- As a system, I want all tables to be normalized to 3rd Normal Form, so I can improve data integrity and reduce data redundancy.
+- As a system, I want to unit test all functions and methods, so I can ensure boundary conditions are not violated.
+- As a system, I want to incorporate static code analysis, using both automated and manual methods, so I can ensure there are no weaknesses due to code syntax.
+- As a system, I want to incorporate dynamic code analysis and penetration testing, so I can ensure there are no vulnerabilities due to code semantics.
+- As a system, I want to style and comment all code per the appropriate style guide, so I can properly maintain and turn-over the application, as necessary.
+- As a system, I want to incorporate version control, so I may audit and track code generation.
+- As a system, I want all CRITICAL, HIGH, MEDIUM, and STANDARD issues and risks, identified during static and dynamic analysis, corrected before uploading to a repository, so I can ensure the repository's code meets the bug bar.
+- As a system, if a CRITICAL, HIGH, MEDIUM, and STANDARD issue and risk cannot be corrected immediately, I want it recorded in a bug log, so I can ensure the issue or risk is corrected before deployment.
+- As a system, I want all presentation code to be HTML5 and W3C compliant, so I can ensure the application provides the same functionality across different platforms.
