@@ -1,8 +1,6 @@
-# SWEN-670
+# Team 3 Capstone Project
 
-## Capstone Project for Team 3, SWEN 670 (Summer), UMGC
-
-![A collaboration between the SFD and the UMGC](Images/README00.png "A collaboration between the SFD and the UMGC")
+![A collaboration between the SFD and the UMGC](/Images/README00.png "A collaboration between the SFD and the UMGC")
 
 >***DISCLAIMER:***
 >
@@ -10,7 +8,16 @@
 >
 >- ***NEITHER THE CITY OF SALISBURY NOR THE SALISBURY FIRE DEPARTMENT HAS APPROVED THIS PROJECT FOR FUNDING OR PRODUCTION.***
 
-## Scenario
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Requirement Analysis](#requirement-analysis)
+- [System and Database Design](#system-and-database-design)
+- [User Guide](#user-guide)
+- [Meet The Team!](#meet-the-team)
+- [References](#references)
+
+## Introduction
 
 On May 20, 2020, the Salisbury Fire Department published a Request For Proposal (RFP) through the City of Salisbury's GovQuote web portal. Team 3, SWEN 670 (Summer), at the University of Maryland, Global Campus (UMGC), responded to the proposal the next day.
 
@@ -27,7 +34,21 @@ The Salisbury Fire Department's **Business Problem** and **Desired Outcomes** ar
 >- *Allow patients and authorized users to create, read, update, and delete records, from a desktop or laptop computer, through a secure, but easily navigable administration interface.*
 >- *Allow patients and authorized users to print Letters of Life or save them in portable data format (PDF).*
 
-In this repository, we will record both the code and documents that we produced to satisfy the business problem and meet each desired outcome.
+This folder contains the code generated to satisfy the business problem and meet each desired outcome.
+
+---
+
+## Requirement Analysis
+
+---
+
+## System and Database Design
+
+---
+
+## User Guide
+
+---
 
 ## Meet the Team
 
@@ -40,3 +61,7 @@ Team 3 is:
 - Robert Garcia
 - Augustin Mwamba
 - Sefanit Urgessa (Sofy)
+
+---
+
+## References
