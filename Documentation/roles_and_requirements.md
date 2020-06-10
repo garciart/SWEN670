@@ -9,6 +9,7 @@ Updated 2020-06-04
 - [Medical Services Provider (e.g., EMS, ED Staff, etc.)](###medical-services-provider)
 - [Patient Agent (Primary Care Physician, Power of Attorney (POA) agent, etc.)](###patient-agent)
 - [System Administrator](###system-administrator)
+- [Non-Functional Requirements](###non-functional-requirements)
 
 ## User Stories (Functional Requirements)
 
