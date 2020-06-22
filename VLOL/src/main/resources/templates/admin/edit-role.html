@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit Role</title>
+    </head>
+    <body>
+        <div align="center">
+            <h1>Edit Role</h1>
+            <br />
+            <form action="#" th:action="@{/save-role}" th:object="${role}" method="post">
+                <table border="0" cellpadding="10">
+                    <tr>             
+                        <td>Role ID:</td>
+                        <td>
+                            <input type="text" th:field="*{roleID}" readonly="readonly" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Role Title:</td>
+                        <td>
+                            <input type="text" th:field="*{title}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">Save</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <br />
+            <a href="/list-roles">Return to Role Manager</a>
+        </div>
+    </body>
+</html>
