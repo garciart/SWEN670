@@ -19,25 +19,31 @@
 package com.vlol.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import javax.persistence.*;
 import java.util.Set;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "med_condition")
+@Table(name = "illness")
 public class Condition implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "condition_id")
+    @Column(name = "illness_id")
     private Long conditionID;
 
-    @Column(name = "condition_name", unique = true)
+    @Column(name = "illness_name", length = 50, unique = true)
     @NotBlank(message = "Condition name is required.")
+    // Check if text is valid per RFC 3986.
+    @Pattern(regexp = "^[A-Za-z0-9\\s\\-._~:\\/?#\\[\\]@!$&'()*+,;=]*$", message = "Input contains illegal characters.")
+    @Size(min = 2, max = 50, message = "Input exceeds size limits.")
     private String conditionName;
 
     @ManyToMany(mappedBy = "conditions", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
     public Long getConditionID() {
         return conditionID;

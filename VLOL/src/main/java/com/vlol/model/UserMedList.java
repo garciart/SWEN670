@@ -20,7 +20,11 @@ package com.vlol.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Set;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user_med_list")
@@ -28,25 +32,28 @@ public class UserMedList implements Serializable {
 
     @EmbeddedId
     UserMedListKey UserMedListID;
-    
+
     @ManyToOne
     @MapsId("user_id")
     @JoinColumn(name = "user_id")
     User user;
- 
+
     @ManyToOne
     @MapsId("medication_id")
     @JoinColumn(name = "medication_id")
     Medication medication;
-    
+
     @Column(name = "dosage")
+    @Digits(integer = 6, fraction = 2, message = "Input is not in the form of a decimal.")
+    @NotNull
     private float dosage;
 
-    @Column(name = "frequency")
-    private int frequency;
-
-    @Column(name = "time_unit")
-    private String timeUnit;
+    @Column(name = "frequency", length = 32)
+    @NotBlank(message = "Frequency of dosage is required.")
+    // Check if text is valid per RFC 3986.
+    @Pattern(regexp = "^[A-Za-z0-9\\s\\-._~:\\/?#\\[\\]@!$&'()*+,;=]*$", message = "Input contains illegal characters.")
+    @Size(min = 2, max = 100, message = "Input exceeds size limits.")
+    private String frequency;
 
     public float getDosage() {
         return dosage;
@@ -56,19 +63,11 @@ public class UserMedList implements Serializable {
         this.dosage = dosage;
     }
 
-    public int getFrequency() {
+    public String getFrequency() {
         return frequency;
     }
 
-    public void setFrequency(int frequency) {
+    public void setFrequency(String frequency) {
         this.frequency = frequency;
-    }
-
-    public String getTimeUnit() {
-        return timeUnit;
-    }
-
-    public void setTimeUnit(String timeUnit) {
-        this.timeUnit = timeUnit;
     }
 }
