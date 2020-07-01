@@ -21,10 +21,15 @@ package com.vlol.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Set;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "vlol_role")
+@Table(name = "approle")
 public class Role implements Serializable {
 
     @Id
@@ -32,18 +37,26 @@ public class Role implements Serializable {
     @Column(name = "role_id")
     private Long roleID;
 
-    @Column(name = "access_level")
-    @NotBlank(message = "Access level is required.")
-    private int accessLevel;
-
-    @Column(name = "title", unique = true)
+    @Column(name = "role_title", length = 50, unique = true)
     @NotBlank(message = "Role title is required.")
+    // Check if text is valid per RFC 3986.
+    @Pattern(regexp = "^[A-Za-z0-9\\s\\-._~:\\/?#\\[\\]@!$&'()*+,;=]*$", message = "Input contains illegal characters.")
+    @Size(max = 50, message = "Input exceeds size limits.")
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "role_level")
+    @Max(value = 20, message = "Access level must be between 1 and 20.")
+    @NotNull(message = "Access level is required.")
+    @Positive(message = "Access level must be between 1 and 20.")
+    private int accessLevel;
+
+    @Column(name = "role_description", length = 300)
+    // Check if text is valid per RFC 3986.
+    @Pattern(regexp = "^[A-Za-z0-9\\s\\-._~:\\/?#\\[\\]@!$&'()*+,;=]*$", message = "Input contains illegal characters.")
+    @Size(max = 300, message = "Input exceeds size limits.")
     private String description;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.ALL)
     private Set<User> users;
 
     public Long getRoleID() {
@@ -54,20 +67,20 @@ public class Role implements Serializable {
         this.roleID = roleID;
     }
 
-    public int getAccessLevel() {
-        return accessLevel;
-    }
-
-    public void setAccessLevel(int accessLevel) {
-        this.accessLevel = accessLevel;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getAccessLevel() {
+        return accessLevel;
+    }
+
+    public void setAccessLevel(int accessLevel) {
+        this.accessLevel = accessLevel;
     }
 
     public String getDescription() {

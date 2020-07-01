@@ -18,7 +18,6 @@
  */
 package com.vlol.service;
 
-import com.vlol.model.Role;
 import com.vlol.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -46,20 +45,24 @@ public class UserService {
     }
 
     public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findUserByEmail(email);
     }
 
     public User saveUser(User user) {
+        /*
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setIsActive(Boolean.TRUE);
         user.setIsLocked(Boolean.FALSE);
-        Role userRole = roleRepository.findByTitle("user");
+        Role userRole = roleRepository.findByTitle("participant");
         // user.setRoles(new HashSet<VLOLRole>(Arrays.asList(userRole)));
         user.setRole(userRole);
+         */
+        // Date date = new Date();
+        // user.setLastLoginDate(date);
         return userRepository.save(user);
     }
-    
-        public List<User> listAllUsers() {
+
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
@@ -71,7 +74,7 @@ public class UserService {
         userRepository.deleteById(userID);
     }
 
-    public List<User> searchForUser(String keyword) {
-        return userRepository.search(keyword);
+    public List<User> findUserByKeyword(String keyword) {
+        return userRepository.findUserByKeyword(keyword);
     }
 }
