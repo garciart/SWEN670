@@ -49,7 +49,7 @@ public class VlolController {
 
     @Autowired
     private RoleService roleService;
-    
+
     @Autowired
     private RoleRepository roleRepository;
 
@@ -101,8 +101,6 @@ public class VlolController {
         }
         return mav;
     }
-    
-    
 
     @RequestMapping(value = {"/admin-menu"}, method = RequestMethod.GET)
     public ModelAndView viewMainMenu() {
@@ -144,6 +142,13 @@ public class VlolController {
     public ModelAndView viewContactPage() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("contact");
+        return mav;
+    }
+
+    @RequestMapping(value = {"/qr-capture"}, method = RequestMethod.GET)
+    public ModelAndView viewQRCapturePage() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("qr-capture");
         return mav;
     }
 }

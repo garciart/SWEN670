@@ -82,9 +82,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/console/**").permitAll()
-                .antMatchers( "/favicon.ico").permitAll()
+                .antMatchers("/favicon.ico").permitAll()
+                .antMatchers("/qr-capture").permitAll()
                 //.requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("actuator")
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).hasAuthority("admin")
+
                 .antMatchers("/admin/**").hasAnyAuthority("participant", "provider", "agent", "admin").anyRequest()
                 .authenticated()
                 .and().csrf().disable()

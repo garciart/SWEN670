@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
     <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Allergy Manager</title>
-        <link rel="stylesheet" th:href="@{/css/site.css}"/>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>VLOL QR Code Capture</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
+        <link rel="stylesheet" th:href="@{/css/site.css}"/>
+        <script type="text/javascript" th:src="@{/js/html5-qrcode.min.js}"></script>
     </head>
     <body>
         <header>
@@ -53,33 +57,27 @@
         </header>
         <main role="main" class="pb-3">
             <div class="container">
-                <div class="row">
+                <div class="row text-center">
                     <div class="col-lg-9 mx-auto">
-                        <h1>Administration Menu</h1>
-                        <ul>
-                            <li><a href="/list-allergies">Allergy Management Page</a></li>
-                            <li><a href="/list-conditions">Condition Management Page</a></li>
-                            <li><a href="/list-medications">Medication Management Page</a></li>
-                            <li><a href="/list-roles">Role Management Page</a></li>
-                            <li><a href="/list-users">User Management Page</a></li>
-                            <li><a href="/console">H2 Console Portal</a></li>
-                            <li><a href="/qr-capture">Capture QR Code</a></li>
-                        </ul>
-                        <a href="/">Return to Home Page</a>
+                        <h1>Capture the QR Code below:</h1>
+                        <br />
+                        <div id="reader"></div>
+                        <br />
+                        <a href="/admin-menu" class="btn btn-primary">Return to Administration Menu</a>
+                        <br />
                     </div>
                 </div>
             </div>
         </main>
         <footer class="border-top footer text-muted">
             <div class="container">
-                <span class="mt-5 mb-3 text-muted">Copyright &copy; 2020<span id="currentYear"></span> Team EMS Plus. All Rights Reserved.</span>
+                <p class="mt-5 mb-3 text-muted text-truncate">Copyright &copy; 2020<span id="currentYear"></span> Team EMS Plus. All Rights Reserved.</p>
             </div>
         </footer>
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script>
             // Set copyright ending year to current year
             var date = new Date();
@@ -87,6 +85,15 @@
             if (fullYear !== 2020) {
                 document.getElementById("currentYear").innerHTML = " - " + fullYear;
             }
+            function onScanSuccess(qrCodeMessage) {
+                // handle on success condition with the decoded message
+                // console.log(window.location.pathname + ("/edit-user.html"));
+                console.log(qrCodeMessage);
+                window.location.replace("/edit-user/" + qrCodeMessage);
+            }
+            var html5QrcodeScanner = new Html5QrcodeScanner("reader", {fps: 10, qrbox: 250});
+            html5QrcodeScanner.render(onScanSuccess);
         </script>
     </body>
 </html>
+
