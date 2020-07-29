@@ -18,11 +18,17 @@
  */
 package com.vlol.controller;
 
+import com.vlol.model.Allergy;
+import com.vlol.model.Condition;
+import com.vlol.model.Medication;
 import com.vlol.model.Role;
 import com.vlol.model.User;
-import com.vlol.repository.RoleRepository;
+import com.vlol.service.AllergyService;
+import com.vlol.service.ConditionService;
+import com.vlol.service.MedicationService;
 import com.vlol.service.RoleService;
 import com.vlol.service.UserService;
+import com.vlol.repository.RoleRepository;
 import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
@@ -46,7 +52,16 @@ public class VlolController {
 
     @Autowired
     private UserService userService;
-
+    
+    @Autowired
+    private AllergyService allergyService;
+            
+    @Autowired
+    private ConditionService conditionService;
+        
+    @Autowired
+    private MedicationService medicationService;
+    
     @Autowired
     private RoleService roleService;
 
@@ -75,6 +90,12 @@ public class VlolController {
         user.setLastLoginDate(date);
         user.setDateCreated(date);
         mav.addObject("user", user);
+        List<Allergy> allergies = allergyService.getAllAllergies();
+        mav.addObject("allergies", allergies);
+        List<Condition> conditions = conditionService.getAllConditions();
+        mav.addObject("conditions", conditions);
+        List<Medication> medications = medicationService.getAllMedications();
+        mav.addObject("medications", medications);
         List<Role> roles = roleService.getAllRoles();
         mav.addObject("roles", roles);
         List<User> agents = userService.getAllUsers();
@@ -149,6 +170,13 @@ public class VlolController {
     public ModelAndView viewQRCapturePage() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("qr-capture");
+        return mav;
+    }
+    
+    @RequestMapping(value = {"/test"}, method = RequestMethod.GET)
+    public ModelAndView viewTestPage() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("test");
         return mav;
     }
 }
