@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit Condition</title>
+    </head>
+    <body>
+        <div align="center">
+            <h1>Edit Condition</h1>
+            <br />
+            <form action="#" th:action="@{/update-condition}" th:object="${condition}" method="post">
+                <table border="0" cellpadding="10">
+                    <tr>             
+                        <td>Condition ID:</td>
+                        <td>
+                            <input type="text" th:field="*{conditionID}" readonly="readonly" />
+                        </td>
+                    </tr>
+                    <tr>             
+                        <td>Condition Name:</td>
+                        <td>
+                            <input type="text" th:field="*{conditionName}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">Save</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <br />
+            <a href="/list-conditions">Return to Condition Manager</a>
+        </div>
+    </body>
+</html>
